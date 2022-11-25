@@ -1,0 +1,61 @@
+01. particao(A[0...n - 1], inicio, fim)
+02. |   meio ← (inicio + fim) / 2
+03. |   a ← A[inicio]
+04. |   b ← A[meio]
+05. |   c ← A[fim]
+06. |   medianaIndice ← 0 
+07. |   |
+08. |   se(a < b)
+09. |   |   se(b < c)
+10. |   |   |   //a < b && b < c
+11. |   |   |   medianaIndice ← meio
+12. |   |   senão
+13. |   |   |   se(a < c)
+14. |   |   |   |   //a < c && c <= b
+15. |   |   |   |   medianaIndice ← fim
+16. |   |   |   senão
+17. |   |   |   |   //c <= a && a < b
+18. |   |   |   |   medianaIndice ← inicio
+19. |   |   |   fim_se
+20. |   |   fim_se
+21. |   senão
+22. |   |   se(c < b)
+23. |   |   |   //c < b && b <= a
+24. |   |   |   medianaIndice ← meio
+25. |   |   senão
+26. |   |   |   se(c < a)
+27. |   |   |   |   //b <= c && c < a
+28. |   |   |   |   medianaIndice ← fim
+29. |   |   |   senão
+30. |   |   |   |   //b <= a && a <= c
+31. |   |   |   |   medianaIndice ← inicio
+32. |   |   |   fim_se
+33. |   |   fim_se
+34. |   fim_se
+35. |   trocar(A, medianaIndice, fim)
+36. |   pivo ← A[fim]
+37. |   i ← inicio - 1
+38. |   para j ← inicio até fim - 1
+39. |   |   se(A[j] <= pivo)
+40. |   |   |   i ← i + 1
+41. |   |   |   trocar(A, i, j)
+42. |   |   fim_se
+43. |   fim_para
+44. |   trocar(A, i + 1, fim)
+45. |   retorne i + 1 
+46. fim_particao
+47. quicksortMedianaDeTres(A[0...n - 1], inicio, fim)
+48. |   se(inicio < fim)
+49. |   |   q = particao(A, inicio, fim) 
+50. |   |   quicksortMedianaDeTres(A, inicio, q - 1) 
+51. |   |   quicksortMedianaDeTres(A, q + 1, fim)
+52. |   fim_se
+53. fim_quicksort
+
+
+Subvetores-Esquerda
+17,31,29,9,23,2,29,22,11
+2,9,2
+2
+
+
