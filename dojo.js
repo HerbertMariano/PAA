@@ -1,4 +1,9 @@
-//método auxiliar: troca os elementos i e j em A
+var esq = 0
+var dir = 0
+
+
+
+
 function swap(A, i, j) {
     var temp = A[i];
     A[i] = A[j];
@@ -12,6 +17,7 @@ function partition(A, inicio, fim) {
     var c = A[fim];
     var medianaIndice; //índice da mediana
     //A sequência de if...else a seguir verifica qual é a mediana
+    
     if (a < b) {
         if (b < c) {
             //a < b && b < c
@@ -41,8 +47,7 @@ function partition(A, inicio, fim) {
     }
     //coloca o elemento da mediana no fim para poder usar o Quicksort de Cormen
     swap(A, medianaIndice, fim);
-
-
+    
     //*******************ALGORITMO DE PARTIÇÃO DE CORMEN*********************
     //o pivo é o elemento final
     var pivo = A[fim];
@@ -54,7 +59,6 @@ function partition(A, inicio, fim) {
      * Esses elementos são colocados na partição esquerda.
      */
     for (j = inicio; j <= fim - 1; j++) {
-
         if (A[j] <= pivo) {
             i = i + 1;
             swap(A, i, j);
@@ -65,59 +69,22 @@ function partition(A, inicio, fim) {
     return i + 1; //retorna a posição do pivô
 }
 //Quicksort mediana de três
-var cont_esque = 0;
-var cont_dir = 0;
 function quicksortMedianaDeTres(A, inicio, fim) {
+    console.log(A)
     if (inicio < fim) {
         //realiza a partição
         var q = partition(A, inicio, fim);
-        cont_esque++
-        console.log('(' + A.slice(inicio, q - 1) + ') esquerda' + cont_esque)
         //ordena a partição esquerda
         quicksortMedianaDeTres(A, inicio, q - 1);
         //ordena a partição direita
-        cont_dir++
-        console.log('(' + A.slice(q + 1, fim) + ')direita' + cont_dir)
         quicksortMedianaDeTres(A, q + 1, fim);
     }
 }
 
-function maior(A, init, fim) {
-    var x = Math.max.apply(Math, A);
-    for (i = init; i < fim; i++) {
-        if (A[i] == x) {
-            return i
-        }
-    }
-}
 
-function menor(A, init, fim) {
-    var x = Math.min.apply(Math, A);
-    for (i = init; i < fim; i++) {
-        if (A[i] == x) {
-            return i
-        }
-    }
-}
-
-function selecao(S, p, r, k) {
-    if (k == 0) {
-        return menor(S, p, r)
-    }
-    var n = r - p
-    if (k == n) {
-        return maior(S, p, r)
-    }
-    var q = quicksortMedianaDeTres(S, p, r)
-    if (k <= q - p) {
-        return selecao(S, p, q - 1, k)
-    }
-    return selecao(S, q, r, k - q + p)
-
-}
-
-
-var A = [35, 17, 31, 29, 9, 23, 2, 29, 22, 64, 11, 2, 70, 43, 81, 55, 90]
+var A = [35, 17, 31,2, 29, 9, 23, 29, 22, 64, 11, 2, 70, 43, 81, 55, 90]
 var init = 0;
 var ffff = A.length;
-quicksortMedianaDeTres(A, init, ffff-1);
+quicksortMedianaDeTres(A, init, ffff - 1);
+
+console.log(A);
