@@ -53,9 +53,4 @@
 53. fim_quicksort
 
 
-Subvetores-Esquerda
-17,31,29,9,23,2,29,22,11
-2,9,2
-2
-
 
